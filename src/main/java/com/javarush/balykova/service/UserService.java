@@ -1,7 +1,7 @@
-package com.javarush.khmelov.service;
+package com.javarush.balykova.service;
 
-import com.javarush.khmelov.repository.UserRepository;
-import com.javarush.khmelov.entity.User;
+import com.javarush.balykova.repository.UserRepository;
+import com.javarush.balykova.entity.User;
 
 import java.util.Collection;
 import java.util.Optional;

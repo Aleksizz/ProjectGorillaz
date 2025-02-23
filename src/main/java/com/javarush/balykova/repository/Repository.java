@@ -1,6 +1,6 @@
-package com.javarush.khmelov.repository;
+package com.javarush.balykova.repository;
 
-import com.javarush.khmelov.entity.User;
+import com.javarush.balykova.entity.User;
 
 import java.util.Collection;
 import java.util.Optional;

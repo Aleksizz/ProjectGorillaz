@@ -1,7 +1,7 @@
-package com.javarush.khmelov.cmd;
+package com.javarush.balykova.cmd;
 
-import com.javarush.khmelov.entity.User;
-import com.javarush.khmelov.service.UserService;
+import com.javarush.balykova.entity.User;
+import com.javarush.balykova.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Collection;
