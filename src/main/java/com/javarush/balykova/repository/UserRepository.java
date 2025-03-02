@@ -1,6 +1,5 @@
 package com.javarush.balykova.repository;
 
-import com.javarush.balykova.entity.Role;
 import com.javarush.balykova.entity.User;
 
 import java.util.Collection;
@@ -16,10 +15,10 @@ public class UserRepository implements Repository<User> {
     public static final AtomicLong id = new AtomicLong(System.currentTimeMillis());
 
     public UserRepository() {
-        map.put(1L, new User(1L, "Alisa", "qwerty", Role.USER));
-        map.put(2L, new User(2L, "Bob", "", Role.GUEST));
-        map.put(3L, new User(3L, "Carl", "admin", Role.ADMIN));
-        map.put(4L, new User(4L, "Khmelov", "admin", Role.ADMIN));
+        map.put(1L, new User(1L, "Alisa", "qwerty"));
+        map.put(2L, new User(2L, "Bob", ""));
+        map.put(3L, new User(3L, "Carl", "admin"));
+        map.put(4L, new User(4L, "Alexxizz", "admin"));
     }
 
     @Override

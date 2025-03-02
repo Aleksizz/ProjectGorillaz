@@ -1,6 +1,5 @@
 package com.javarush.balykova.cmd;
 
-import com.javarush.balykova.entity.Role;
 import com.javarush.balykova.entity.User;
 import com.javarush.balykova.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,10 +23,7 @@ public class EditUser implements Command {
         if (stringId != null) {
             long id = Long.parseLong(stringId);
             Optional<User> optionalUser = userService.get(id);
-            if (optionalUser.isPresent()) {
-                User user = optionalUser.get();
-                req.setAttribute("user", user);
-            }
+            optionalUser.ifPresent(user ->  req.setAttribute("user", optionalUser.get()));
         }
         return getView();
     }
@@ -37,7 +33,6 @@ public class EditUser implements Command {
         User user = User.builder()
                 .login(req.getParameter("login"))
                 .password(req.getParameter("password"))
-                .role(Role.valueOf(req.getParameter("role")))
                 .build();
         if (req.getParameter("create") != null) {
             userService.create(user);

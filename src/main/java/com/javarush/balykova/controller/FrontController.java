@@ -2,7 +2,6 @@ package com.javarush.balykova.controller;
 
 import com.javarush.balykova.cmd.Command;
 import com.javarush.balykova.config.Winter;
-import com.javarush.balykova.entity.Role;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet({"", "/home", "/list-user", "/edit-user"})
+@WebServlet({"", "/start-page", "/list-user", "/edit-user"})
 public class FrontController extends HttpServlet {
 
     private final HttpResolver httpResolver = Winter.find(HttpResolver.class);
@@ -23,11 +22,6 @@ public class FrontController extends HttpServlet {
         String view = command.doGet(req);
         String jsp = getJsp(view);
         req.getRequestDispatcher(jsp).forward(req, resp);
-    }
-
-    @Override
-    public void init(ServletConfig config) {
-        config.getServletContext().setAttribute("roles", Role.values());
     }
 
     private static String getJsp(String view) {

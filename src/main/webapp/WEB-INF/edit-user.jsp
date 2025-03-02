@@ -39,19 +39,6 @@
                 </div>
             </div>
 
-
-            <!-- Select Basic -->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="role">Role</label>
-                <div class="col-md-4">
-                    <select id="role" name="role" class="form-control">
-                        <c:forEach var="role" items="${applicationScope.roles}">
-                            <option value="${role}" ${role==requestScope.user.role?"selected":""}>${role}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-
             <!-- Button (Double) -->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="create">Operation</label>
