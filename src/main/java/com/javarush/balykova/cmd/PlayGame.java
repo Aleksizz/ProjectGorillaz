@@ -17,6 +17,10 @@ import java.util.Optional;
 @Slf4j
 public class PlayGame implements Command {
 
+    public static final String SHOULD_LOGIN_FIRST = "You should login first";
+    public static final String NO_FINISHED_GAME = "NO FINISHED GAME";
+    public static final String CHOOSE_ANY_ANSWER = "Should choose any answer";
+    public static final String GAME_NOT_FOUND = "Game not found";
     private final GameService gameService;
     private final QuestionService questionService;
 
@@ -36,13 +40,13 @@ public class PlayGame implements Command {
                 showOneQuestion(request, game.get());
                 return getView();
             } else {
-                String message = "Нет незавершенной игры";
+                String message = NO_FINISHED_GAME;
                 log.warn(message);
                 RequestHelpers.createError(request, message);
                 return Go.HOME;
             }
         } else {
-            String message = "Сначала нужно войти в аккаунт";
+            String message = SHOULD_LOGIN_FIRST;
             log.warn(message);
             RequestHelpers.createError(request, message);
             return Go.LOGIN;
@@ -56,14 +60,14 @@ public class PlayGame implements Command {
         Optional<Game> game = gameService.processOneStep(gameId, answerId);
         if (game.isPresent()) {
             if (answerId == 0 && request.getParameter(Key.GAME) != null) {
-                String message = "Нужно выбрать какой-то ответ";
+                String message = CHOOSE_ANY_ANSWER;
                 log.warn(message);
                 RequestHelpers.createError(request, message);
             }
             Game currentGame = game.get();
             return "%s?questId=%d&id=%d".formatted(Go.PLAY_GAME, game.get().getQuestId(), game.get().getId());
         } else {
-            String message = "Нет такой игры";
+            String message = GAME_NOT_FOUND;
             log.warn(message);
             RequestHelpers.createError(request, message);
             return Go.HOME;

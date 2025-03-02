@@ -43,7 +43,7 @@ public class FrontController extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         Command command = httpResolver.resolve(req);
         String view = command.doGet(req);
         String jsp = getJsp(view);

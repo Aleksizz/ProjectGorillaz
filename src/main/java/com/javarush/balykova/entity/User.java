@@ -26,4 +26,9 @@ public class User implements AbstractEntity{
 
     private final Collection<Game> games = new ArrayList<>();
 
+    public String getImage() { //TODO move to DTO
+        if (id < 10) return "user-0" + id;
+        return "user-" + id;
+    }
+
 }
