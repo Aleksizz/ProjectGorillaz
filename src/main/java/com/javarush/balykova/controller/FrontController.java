@@ -23,7 +23,7 @@ import java.io.IOException;
 @MultipartConfig(fileSizeThreshold = 1 << 20)
 @WebServlet({
         Go.INDEX, Go.HOME,
-        Go.SIGNUP, Go.LOGIN, Go.LOGOUT,
+        Go.SIGNUP, Go.LOGIN, Go.LOGOUT, Go.DELETE,
         Go.LIST_USER, Go.PROFILE, Go.EDIT_USER,
         Go.CREATE_QUEST, Go.QUEST,
         Go.PLAY_GAME,

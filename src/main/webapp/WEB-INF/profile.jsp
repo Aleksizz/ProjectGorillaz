@@ -17,6 +17,7 @@
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                     <input type="hidden" name="id" value="${user.id}">
                     <button type="submit" name="user" class="btn btn-primary btn-lg px-4 gap-3">Редактировать</button>
+                    <button type="submit" name="delete" class="btn btn-primary btn-lg px-4 gap-3">Удалить</button>
                     <button type="submit" name="logout" class="btn btn-outline-secondary btn-lg px-4">Выход</button>
                 </div>
             </form>

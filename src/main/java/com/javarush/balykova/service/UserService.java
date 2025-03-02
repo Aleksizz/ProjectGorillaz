@@ -28,16 +28,15 @@ public class UserService {
         userRepository.update(user);
     }
 
-    public void delete(User user) {
-        userRepository.delete(user);
-    }
-
     public Collection<User> getAll() {
         return userRepository.getAll();
     }
 
     public Optional<User> get(long id) {
         return Optional.ofNullable(userRepository.get(id));
+    }
+    public void delete(User user) { // Метод для удаления юзера
+        userRepository.delete(user);
     }
 
     public Optional<User> get(String login, String password) {

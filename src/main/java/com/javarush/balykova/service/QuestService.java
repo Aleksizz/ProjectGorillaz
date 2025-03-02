@@ -107,9 +107,9 @@ public class QuestService {
 
     private Optional<Question> fillQuestion(Question currentQuestion, long key, String type, String partText) {
         currentQuestion = switch (type) {
-            case QUEST_SYMBOL -> Question.builder().text(partText).gameState(GameState.PLAY).build();
-            case WIN_SYMBOL -> Question.builder().text(partText).gameState(GameState.WIN).build();
-            case LOST_SYMBOL -> Question.builder().text(partText).gameState(GameState.LOSE).build();
+            case QUEST_SYMBOL -> Question.builder().text(partText).resultGame(ResultGame.PLAY).build();
+            case WIN_SYMBOL -> Question.builder().text(partText).resultGame(ResultGame.WIN).build();
+            case LOST_SYMBOL -> Question.builder().text(partText).resultGame(ResultGame.LOSE).build();
             case LINK_SYMBOL -> {
                 Answer build = Answer.builder()
                         .nextQuestionId(key)

@@ -9,7 +9,6 @@
         <thead>
         <tr>
             <th scope="col">Логин</th>
-            <th scope="col">В процессе</th>
             <th scope="col">Победа</th>
             <th scope="col">Поражение</th>
             <th scope="col">Всего</th>
@@ -19,7 +18,6 @@
         <c:forEach var="stat" items="${requestScope.listUserStatistics}">
             <tr>
                 <td scope="row">${stat.login}</td>
-                <td>${stat.play}</td>
                 <td>${stat.win}</td>
                 <td>${stat.lost}</td>
                 <td>${stat.total}</td>
@@ -35,7 +33,6 @@
         <c:set var="all" value="${requestScope.totalUserStatistics}"/>
         <tr class="table-active">
             <th scope="col">${all.login}</th>
-            <th scope="col">${all.play}</th>
             <th scope="col">${all.win}</th>
             <th scope="col">${all.lost}</th>
             <th scope="col">${all.total}</th>

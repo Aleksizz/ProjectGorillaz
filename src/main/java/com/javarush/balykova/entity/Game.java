@@ -18,5 +18,6 @@ public class Game implements AbstractEntity {
 
     private Long currentQuestionId;
 
-    private GameState gameState;
+    private ResultGame resultGame;
+
 }

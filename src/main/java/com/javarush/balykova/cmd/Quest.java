@@ -33,19 +33,4 @@ public class Quest implements Command {
         return getView();
     }
 
-    @Override
-    @SneakyThrows
-    public String doPost(HttpServletRequest req) {
-        Optional<User> editor = RequestHelpers.getUser(req.getSession());
-        if (editor.isPresent() && editor.get().getRole() == Role.ADMIN) {
-            Long id = RequestHelpers.getId(req);
-            Long questionId = RequestHelpers.getId(req, "questionId");
-            String text = req.getParameter(Key.TEXT);
-            Optional<Question> question = questionService.update(questionId, text);
-
-            return "%s?id=%d#bookmark%d".formatted(Go.QUEST, id, questionId);
-        } else {
-            return Go.QUEST; //TODO добавить ошибку, что "Недостаточно прав для редактирования";
-        }
-    }
 }

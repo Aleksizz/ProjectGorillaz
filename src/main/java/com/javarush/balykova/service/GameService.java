@@ -38,7 +38,7 @@ public class GameService {
         Game newGame = Game.builder()
                 .questId(questId)
                 .currentQuestionId(startQuestionId)
-                .gameState(firstQuestion.getGameState())
+                .resultGame(firstQuestion.getResultGame())
                 .userId(userId) //from session
                 .build();
         userRepository.get(userId).getGames().add(newGame);
@@ -48,14 +48,14 @@ public class GameService {
 
     public Optional<Game> processOneStep(Long gameId, Long answerId) {
         Game game = gameRepository.get(gameId);
-        if (game.getGameState() == GameState.PLAY) {
+        if (game.getResultGame() == ResultGame.PLAY) {
             Answer answer = answerRepository.get(answerId);
             Long nextQuestionId = answer != null
                     ? answer.getNextQuestionId()
                     : game.getCurrentQuestionId();
             game.setCurrentQuestionId(nextQuestionId);
             Question question = questionRepository.get(nextQuestionId);
-            game.setGameState(question.getGameState());
+            game.setResultGame(question.getResultGame());
             gameRepository.update(game);
         } else {
             game = getNewGame(game.getUserId(), game.getQuestId());

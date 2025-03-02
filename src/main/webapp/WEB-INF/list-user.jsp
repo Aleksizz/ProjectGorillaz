@@ -5,7 +5,9 @@
 
     <c:forEach var="user" items="${requestScope.users}">
         <img src="images/${user.image}" alt="images/${user.image}" width="100px">
-        Edit user <a href="edit-user?id=${user.id}">${user.login}</a> <br> <br>
+        ${user.login}  <br>
+        <a href="edit-user?id=${user.id}">Edit user</a>  <br>
+        <a href="delete-user?id=${user.id}">Delete user</a>  <br> <br>
     </c:forEach>
 
 </div>

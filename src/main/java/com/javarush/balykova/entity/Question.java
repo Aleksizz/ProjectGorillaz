@@ -19,7 +19,7 @@ public class Question implements AbstractEntity {
 
     private String text;
 
-    private GameState gameState;
+    private ResultGame resultGame;
 
     private final Collection<Answer> answers = new ArrayList<>();
 

@@ -1,13 +1,14 @@
 package com.javarush.balykova.service;
 
 import com.javarush.balykova.entity.Game;
-import com.javarush.balykova.entity.GameState;
+import com.javarush.balykova.entity.ResultGame;
 import com.javarush.balykova.entity.User;
 import com.javarush.balykova.entity.GameStatistics;
 import com.javarush.balykova.repository.GameRepository;
 import com.javarush.balykova.repository.UserRepository;
 import lombok.AllArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -18,16 +19,17 @@ public class StatService {
     private final GameRepository gameRepository;
 
     public Collection<GameStatistics> getUserStatistics() {
-        return userRepository.getAll()
-                .stream()
-                .map(this::calculateUserStatistics)
-                .toList();
+        List<GameStatistics> list = new ArrayList<>();
+        for (User user : userRepository.getAll()) {
+            GameStatistics gameStatistics = calculateUserStatistics(user);
+            list.add(gameStatistics);
+        }
+        return list;
     }
 
     public GameStatistics getTotalUserStatistics() {
-        GameStatistics all = GameStatistics.builder().login("ALL").build();
+        GameStatistics all = GameStatistics.builder().login("All Users").build();
         for (GameStatistics userStatistic : getUserStatistics()) {
-            all.setPlay(all.getPlay() + userStatistic.getPlay());
             all.setTotal(all.getTotal() + userStatistic.getTotal());
             all.setWin(all.getWin() + userStatistic.getWin());
             all.setLost(all.getLost() + userStatistic.getLost());
@@ -38,15 +40,13 @@ public class StatService {
     private GameStatistics calculateUserStatistics(User user) {
         Game pattern = Game.builder().userId(user.getId()).build();
         List<Game> games = gameRepository.find(pattern).toList();
-        long win = games.stream().filter(game -> game.getGameState().equals(GameState.WIN)).count();
-        long lost = games.stream().filter(game -> game.getGameState().equals(GameState.LOSE)).count();
-        long play = games.stream().filter(game -> game.getGameState().equals(GameState.PLAY)).count();
+        long win = games.stream().filter(game -> game.getResultGame().equals(ResultGame.WIN)).count();
+        long lost = games.stream().filter(game -> game.getResultGame().equals(ResultGame.LOSE)).count();
         return GameStatistics.builder()
                 .login(user.getLogin())
                 .win(win)
                 .lost(lost)
-                .play(play)
-                .total(win + lost + play)
+                .total(win + lost)
                 .build();
     }
 

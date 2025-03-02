@@ -7,9 +7,9 @@
                 <div class="col-md-6 col-xl-4">
                     <div class="card mb-5">
                         <div class="card-body d-flex flex-column align-items-center">
-                            <h2>Signup</h2>
+                            <h2>Страница регистрации</h2>
                             <form class="text-center" method="post" action="signup">
-                                <p class="w-lg-50">Укажите данные для регистрации</p>
+                                <p class="w-lg-50">Укажите данные</p>
                                 <div class="mb-3">
                                     <input class="form-control" type="text" name="login" placeholder="Login">
                                 </div>
