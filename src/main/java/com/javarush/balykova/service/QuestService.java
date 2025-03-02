@@ -117,33 +117,26 @@ public class QuestService {
                         .text(partText)
                         .build();
                 currentQuestion.getAnswers().add(build);
-                yield new Question(); // или просто новый пустой объект, если вопрос не нужен
+                yield null;
             }
             default -> throw new AppException("incorrect parsing");
         };
-        return Optional.of(currentQuestion);
+        return Optional.ofNullable(currentQuestion);
     }
 
-
     private void updateLinksAndId(Map<Long, Question> map, Quest quest) {
-        if (quest == null) throw new AppException("Quest cannot be null.");
-
         for (Question question : map.values()) {
             question.setQuestId(quest.getId());
             quest.getQuestions().add(question);
-
-            if(question.getAnswers() != null) {
-                for (Answer answer : question.getAnswers()) {
-                    answer.setQuestionId(question.getId());
-                    Long key = answer.getNextQuestionId();
-                    if (map.containsKey(key)) {
-                        answer.setNextQuestionId(map.get(key).getId());
-                    }
+            for (Answer answer : question.getAnswers()) {
+                answer.setQuestionId(question.getId());
+                Long key = answer.getNextQuestionId(); //label (index in text)
+                if (map.containsKey(key)) {
+                    answer.setNextQuestionId(map.get(key).getId()); //real index
                 }
             }
         }
     }
-
 
 
 }
