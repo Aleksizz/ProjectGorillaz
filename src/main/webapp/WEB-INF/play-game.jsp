@@ -4,9 +4,9 @@
 <body>
 
 
-<jsp:useBean id="user" scope="session" type="com.javarush.khmelov.entity.User"/>
-<jsp:useBean id="question" scope="request" type="com.javarush.khmelov.entity.Question"/>
-<jsp:useBean id="game" scope="request" type="com.javarush.khmelov.entity.Game"/>
+<jsp:useBean id="user" scope="session" type="com.javarush.balykova.entity.User"/>
+<jsp:useBean id="question" scope="request" type="com.javarush.balykova.entity.Question"/>
+<jsp:useBean id="game" scope="request" type="com.javarush.balykova.entity.Game"/>
 
 
 <div class="container py-4 py-xl-5">
