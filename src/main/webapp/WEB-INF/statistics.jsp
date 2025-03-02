@@ -1,44 +1,46 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@include file="parts/header.jsp" %>
+<c:import url="parts/header.jsp"/>
 <div class="container">
-    <section class="position-relative py-4 py-xl-5">
-        <div class="container">
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-6 col-xl-4">
-                    <div class="card mb-5">
-                        <div class="card-body d-flex flex-column align-items-center">
-                            <h2>Signup</h2>
-                            <form class="text-center" method="post" action="signup" enctype="multipart/form-data">
-                                <p class="text-muted">Нажмите для загрузки фото</p>
-                                <!-- File Button -->
-                                <div class="form-group">
-                                    <label for="image">
-                                        <img id="previewId" src="assets/img/blank-photo.png" width="250px"
-                                             alt="${requestScope.user.image}">
-                                    </label>
-                                    <input onchange="PreviewImage('image','previewId');" id="image" name="image"
-                                           style="visibility:hidden;"
-                                           class="input-file" type="file">
-                                    <script type="text/javascript">
-                                        function PreviewImage(inputFileId, imageId) {
-                                            let oFReader = new FileReader();
-                                            oFReader.readAsDataURL(document.getElementById(inputFileId).files[0]);
-                                            oFReader.onload = function (oFREvent) {
-                                                document.getElementById(imageId).src = oFREvent.target.result;
-                                            };
-                                        }
-                                    </script>
-                                </div>
-                                <p class="w-lg-50">Укажите данные для регистрации</p>
-                                <div class="mb-3"><input class="form-control" type="text" name="login" placeholder="Login"></div>
-                                <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-                                <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Signup</button></div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <br>
+    <h2>Статистика</h2>
+    <br>
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Логин</th>
+            <th scope="col">В процессе</th>
+            <th scope="col">Победа</th>
+            <th scope="col">Поражение</th>
+            <th scope="col">Всего</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="stat" items="${requestScope.listUserStatistics}">
+            <tr>
+                <td scope="row">${stat.login}</td>
+                <td>${stat.play}</td>
+                <td>${stat.win}</td>
+                <td>${stat.lost}</td>
+                <td>${stat.total}</td>
+            </tr>
+        </c:forEach>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <c:set var="all" value="${requestScope.totalUserStatistics}"/>
+        <tr class="table-active">
+            <th scope="col">${all.login}</th>
+            <th scope="col">${all.play}</th>
+            <th scope="col">${all.win}</th>
+            <th scope="col">${all.lost}</th>
+            <th scope="col">${all.total}</th>
+        </tr>
+        </tbody>
+    </table>
 </div>
-<%@include file="parts/footer.jsp" %>
+<c:import url="parts/footer.jsp"/>

@@ -1,0 +1,14 @@
+package com.javarush.balykova.entity;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class GameStatistics {
+    String login;
+    long win;
+    long lost;
+    long play;
+    long total;
+}

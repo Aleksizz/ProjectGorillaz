@@ -1,47 +1,42 @@
 package com.javarush.balykova.cmd;
 
+import com.javarush.balykova.entity.Role;
 import com.javarush.balykova.entity.User;
 import com.javarush.balykova.service.UserService;
+import com.javarush.balykova.util.Key;
 import jakarta.servlet.http.HttpServletRequest;
-
-import java.util.Optional;
+import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 
 
 @SuppressWarnings("unused")
+@AllArgsConstructor
 public class EditUser implements Command {
 
     private final UserService userService;
 
-    public EditUser(UserService userService) {
-        this.userService = userService;
-    }
-
-
     @Override
     public String doGet(HttpServletRequest req) {
-        String stringId = req.getParameter("id");
+        String stringId = req.getParameter(Key.ID);
         if (stringId != null) {
             long id = Long.parseLong(stringId);
-            Optional<User> optionalUser = userService.get(id);
-            optionalUser.ifPresent(user ->  req.setAttribute("user", optionalUser.get()));
+            userService.get(id)
+                    .ifPresent(user -> req.setAttribute(Key.USER, user));
         }
         return getView();
     }
 
     @Override
+    @SneakyThrows
     public String doPost(HttpServletRequest req) {
+        long id = Long.parseLong(req.getParameter(Key.ID));
         User user = User.builder()
-                .login(req.getParameter("login"))
-                .password(req.getParameter("password"))
+                .id(id)
+                .login(req.getParameter(Key.LOGIN))
+                .password(req.getParameter(Key.PASSWORD))
+                .role(Role.valueOf(req.getParameter(Key.ROLE)))
                 .build();
-        if (req.getParameter("create") != null) {
-            userService.create(user);
-        } else if (req.getParameter("update") != null) {
-            user.setId(Long.parseLong(req.getParameter("id")));
-            userService.update(user);
-        }
+        userService.update(user);
         return getView() + "?id=" + user.getId();
     }
-
-
 }

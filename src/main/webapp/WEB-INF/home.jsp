@@ -13,6 +13,14 @@
                         <use xlink:href="#chevron-right"></use>
                     </svg>
                 </a>
+                <c:if test='${sessionScope.user.role=="ADMIN"}'>
+                    <a href="quest?id=${quest.id}" class="icon-link d-inline-flex align-items-center">
+                        Редактировать
+                        <svg class="bi" width="1em" height="1em">
+                            <use xlink:href="#chevron-right"></use>
+                        </svg>
+                    </a>
+                </c:if>
             </div>
         </c:forEach>
     </div>

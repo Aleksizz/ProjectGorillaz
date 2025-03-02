@@ -12,18 +12,17 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User implements AbstractEntity{
-
+public class Quest implements AbstractEntity {
     private Long id;
 
-    private String login;
+    private String name;
 
-    private String password;
+    private String text;
 
-    private Role role;
+    private Long authorId;
 
-    private final Collection<Quest> quests = new ArrayList<>();
+    private Long startQuestionId;
 
-    private final Collection<Game> games = new ArrayList<>();
+    private final Collection<Question> questions = new ArrayList<>();
 
 }
