@@ -7,7 +7,7 @@
 
         <div class="mb-3">
             <label for="quest-name" class="form-label">Название квеста</label>
-            <input name="name" type="text" class="form-control" id="quest-name" placeholder="Тут укажите имя квеста">
+            <input name="name" type="text" class="form-control" id="quest-name" placeholder="Здесь укажите имя квеста">
         </div>
 
         <div class="mb-3">
