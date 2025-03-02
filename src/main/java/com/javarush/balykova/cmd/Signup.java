@@ -5,6 +5,7 @@ import com.javarush.balykova.entity.User;
 import com.javarush.balykova.service.UserService;
 import com.javarush.balykova.util.Go;
 import com.javarush.balykova.util.Key;
+import com.javarush.balykova.util.RequestHelpers;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,7 @@ public class Signup implements Command {
     @Override
     @SneakyThrows
     public String doPost(HttpServletRequest request) {
+
         User user = User.builder()
                 .login(request.getParameter(Key.LOGIN))
                 .password(request.getParameter(Key.PASSWORD))

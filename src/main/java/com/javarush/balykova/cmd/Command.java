@@ -1,6 +1,6 @@
 package com.javarush.balykova.cmd;
 
-import jakarta.servlet.ServletException;
+import com.javarush.balykova.util.RequestHelpers;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.stream.Collectors;
@@ -8,11 +8,12 @@ import java.util.stream.Stream;
 
 public interface Command {
 
-    default String doGet(HttpServletRequest request)  throws ServletException {
+    default String doGet(HttpServletRequest request) {
+
         return getView();
     }
 
-    default String doPost(HttpServletRequest request)  throws ServletException{
+    default String doPost(HttpServletRequest request) {
         return getView();
     }
 

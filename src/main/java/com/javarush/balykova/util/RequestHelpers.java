@@ -37,4 +37,9 @@ public class RequestHelpers {
     public static void createError(HttpServletRequest request, String errorMessage) {
         request.getSession().setAttribute(Key.ERROR_MESSAGE, errorMessage);
     }
+
+    public static void clearErrors(HttpSession session) {
+        session.removeAttribute(Key.ERROR_MESSAGE); // Ключ для ошибки
+    }
+
 }

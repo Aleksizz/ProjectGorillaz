@@ -18,6 +18,7 @@ public class Login implements Command {
 
     @Override
     public String doPost(HttpServletRequest request) {
+
         String login = request.getParameter(Key.LOGIN);
         String password = request.getParameter(Key.PASSWORD);
         Optional<User> user = userService.get(login, password);
@@ -26,7 +27,7 @@ public class Login implements Command {
             session.setAttribute(Key.USER, user.get());
             return Go.PROFILE;
         } else {
-            return Go.LOGIN; //todo add error message
+            return Go.LOGIN;
         }
     }
 }

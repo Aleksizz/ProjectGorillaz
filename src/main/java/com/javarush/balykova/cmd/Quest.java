@@ -21,12 +21,11 @@ import static com.javarush.balykova.util.Key.QUEST;
 public class Quest implements Command {
 
     private final QuestService questService;
-    private final QuestionService questionService;
-
 
 
     @Override
     public String doGet(HttpServletRequest req) {
+
         long id = RequestHelpers.getId(req);
         Optional<com.javarush.balykova.entity.Quest> quest = questService.get(id);
         req.setAttribute(QUEST, quest.orElseThrow());

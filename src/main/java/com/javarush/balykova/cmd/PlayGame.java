@@ -39,8 +39,8 @@ public class PlayGame implements Command {
             if (game.isPresent()) {
                 showOneQuestion(request, game.get());
                 return getView();
-            } else {
-                String message = NO_FINISHED_GAME;
+            }else {
+                String message = "Нет незавершенной игры";
                 log.warn(message);
                 RequestHelpers.createError(request, message);
                 return Go.HOME;
@@ -55,6 +55,7 @@ public class PlayGame implements Command {
 
     @Override
     public String doPost(HttpServletRequest request) {
+
         Long gameId = RequestHelpers.getId(request);
         Long answerId = RequestHelpers.getId(request, Key.ANSWER);
         Optional<Game> game = gameService.processOneStep(gameId, answerId);
